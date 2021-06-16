@@ -5,12 +5,12 @@ class ProductsController < ApplicationController
   end
 
   def display_product1
-    products = Product.first
+    products = Product.find_by id: 1
     render json: products.as_json
   end
 
   def display_product2
-    products = Product.second
+    products = Product.find_by id: 2
     render json: products.as_json
   end
 end
