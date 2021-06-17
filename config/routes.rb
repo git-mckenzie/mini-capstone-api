@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get "/display_product1", controller: "products", action: "display_product1"
 
   get "/display_product2", controller: "products", action: "display_product2"
+
+  get "/segment_params/:id" => "products#segment_display_any"
 end

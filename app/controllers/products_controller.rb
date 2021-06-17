@@ -13,4 +13,9 @@ class ProductsController < ApplicationController
     products = Product.find_by id: 2
     render json: products.as_json
   end
+
+  def segment_display_any
+    products = Product.find(params[:id])
+    render json: products.as_json
+  end
 end
