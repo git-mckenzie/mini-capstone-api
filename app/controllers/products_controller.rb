@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  def display_all
+  def index
     products = Product.all
     render json: products.as_json
   end
@@ -14,7 +14,17 @@ class ProductsController < ApplicationController
     render json: products.as_json
   end
 
-  def segment_display_any
+  def query_display_any
+    products = Product.find
+    render json: products.as_json
+  end
+
+  # def segment_display_any
+  #   products = Product.find(params[:id])
+  #   render json: products.as_json
+  # end
+
+  def show
     products = Product.find(params[:id])
     render json: products.as_json
   end
