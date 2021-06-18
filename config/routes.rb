@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   # get "/segment_params/:id" => "products#segment_display_any"
 
   get "/products/:id" => "products#show"
+
+  post "/products" => "prodcuts#create"
 end
