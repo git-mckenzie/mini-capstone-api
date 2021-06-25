@@ -1,21 +1,15 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  get "/products", controller: "products", action: "index"
-
-  # get "/display_product1", controller: "products", action: "display_product1"
-
-  # get "/display_product2", controller: "products", action: "display_product2"
-
-  get "/query_params" => "products#query_display_any"
-
-  # get "/segment_params/:id" => "products#segment_display_any"
-
-  get "/products/:id" => "products#show"
-
+  get "/products" => "products#index"
   post "/products" => "products#create"
-
+  get "/products/:id" => "products#show"
   patch "/products/:id" => "products#update"
-
   delete "products/:id" => "products#destroy"
+
+  get "/suppliers" => "suppliers#index"
+  post "/suppliers" => "suppliers#create"
+  get "/suppliers/:id" => "suppliers#show"
+  patch "/suppliers/:id" => "suppliers#update"
+  delete "suppliers/:id" => "suppliers#destroy"
 end

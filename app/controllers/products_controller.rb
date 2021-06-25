@@ -4,26 +4,6 @@ class ProductsController < ApplicationController
     render json: products.as_json
   end
 
-  def display_product1
-    products = Product.find_by id: 1
-    render json: products.as_json
-  end
-
-  def display_product2
-    products = Product.find_by id: 2
-    render json: products.as_json
-  end
-
-  def query_display_any
-    products = Product.find
-    render json: products.as_json
-  end
-
-  # def segment_display_any
-  #   products = Product.find(params[:id])
-  #   render json: products.as_json
-  # end
-
   def show
     products = Product.find(params[:id])
     render json: products.as_json(methods: [:is_discounted?])
@@ -35,6 +15,8 @@ class ProductsController < ApplicationController
       price: params["price"],
       image_url: params["image_url"],
       description: params["description"],
+      inventory: params["inventory"],
+      supplier_id: params["supplier_id"],
     )
     if products.save
       render json: products
@@ -52,6 +34,8 @@ class ProductsController < ApplicationController
     product.price = params["price"] || product.price
     product.image_url = params["image_url"] || product.image_url
     product.description = params["description"] || product.description
+    product.inventory = params["inventory"] || product.inventory
+    product.supplier_id = params["supplier_id"] || product.supplier_id
 
     if product.save
       render json: product.as_json
