@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
 
   def show
     products = Product.find(params[:id])
-    render json: products.as_json
+    render json: products.as_json(methods: [:is_discounted?])
   end
 
   def create
@@ -36,8 +36,12 @@ class ProductsController < ApplicationController
       image_url: params["image_url"],
       description: params["description"],
     )
-    products.save
-    render json: products.as_json
+    if products.save
+      render json: products
+    else
+      render json: { errors: products.errors.full_messages },
+             status: 406
+    end
   end
 
   def update
@@ -49,8 +53,12 @@ class ProductsController < ApplicationController
     product.image_url = params["image_url"] || product.image_url
     product.description = params["description"] || product.description
 
-    product.save
-    render json: product.as_json
+    if product.save
+      render json: product.as_json
+    else
+      render json: { errors: product.errors.full_messages },
+             status: 451
+    end
   end
 
   def destroy
