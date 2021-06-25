@@ -4,11 +4,6 @@ class ProductsController < ApplicationController
     render json: products.as_json
   end
 
-  def show
-    products = Product.find(params[:id])
-    render json: products.as_json(methods: [:is_discounted?])
-  end
-
   def create
     products = Product.new(
       name: params["name"],
@@ -24,6 +19,11 @@ class ProductsController < ApplicationController
       render json: { errors: products.errors.full_messages },
              status: 406
     end
+  end
+
+  def show
+    products = Product.find(params[:id])
+    render json: products.as_json(methods: [:is_discounted?])
   end
 
   def update
