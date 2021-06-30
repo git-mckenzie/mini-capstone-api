@@ -17,17 +17,16 @@ class ProductsController < ApplicationController
       render json: products
     else
       render json: { errors: products.errors.full_messages },
-             status: 406
+             status: 420
     end
   end
 
   def show
     products = Product.find(params[:id])
-    render json: products.as_json(methods: [:is_discounted?])
+    render json: products
   end
 
   def update
-    product_id = params["id"]
     product = Product.find_by(id: product_id)
 
     product.name = params["name"] || product.name
