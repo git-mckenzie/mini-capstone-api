@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
   has_many :orders
   belongs_to :supplier
+  has_many :category_products
+  has_many :categories, through: :category_products
 
   validates :name, uniqueness: true
   validates :name, :price, :description, :image_url, presence: true
